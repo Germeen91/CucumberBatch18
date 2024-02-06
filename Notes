@@ -9,7 +9,12 @@ BDD - BDD is an approach (behavioral driven development)
 
 cucumber is a tool which allows us to write gherkin language that helps us implementing BDD approach in test automation.
 
-whenever we write BDD scenarios, we will write from end user point of view.
+whenever we write BDD scenarios, we will write from end user point of view using
+ simple English text , defined by a language called Gherkin.
+
+With this approach, the non-technical team members find it easy
+to understand the flow and collaborate more in the process of
+software development
 
 Given - pre condition
 when - performing actions
@@ -20,7 +25,7 @@ every test case in cucumber will be considered as scenario.
 
 why framework -
 
-no reporting strcuture in selenium
+no reporting structure in selenium
 no proper execution point
 no proper segregation of screens of the application
 
@@ -49,3 +54,87 @@ Then user is successfully logged in
 User story - search an employee in HRMS
 Scenario 1 - search employee by ID
 Scenario 2 - search employee by name
+
+
+Class 2-
+
+recap -
+Cucumber allows us to write scenarios in gherkin language
+as a maven project, we created the framework skeleton
+
+main
+test - here we write code to test the application
+java - for all the technical parts
+resources - for all the non tech parts
+
+feature file - in this, we write scenarios
+steps package - to keep all step defs
+
+utils  package is for all the utility classes
+
+We need to control the flow of execution
+to execute all the test cases
+to execute some of the test cases
+to execute one of the test cases
+
+Class 3 -
+recap -
+
+runner class
+
+we need junit to work with cucumber
+cucumber options-
+features - the path of features directory to execute all the TC's in one go
+glue - the path of the steps package, runner class will find all the step defs here
+dry run - if we set it to true, it will stop actual executiomn and scans all the steps
+if any step is missing, it will give me step definition for that step
+if we set it to false, then again execution will st6art
+tags - when we need to execute specific group of test cases or any specific TC
+we use tags.
+There is no limitation of using tags in scenarios
+
+if I want to execute scenarios based on 2 conditions
+
+
+we need config.prop to add all the configuration parameters
+
+class 4 -
+
+recap -
+
+runner class -
+cucumber options -
+features -
+glue -
+dry run -
+tags -
+plugin - pretty  - it prints all the step definitions in console
+
+common methods - we have all the common methods here
+
+hooks - we will write the pre-condition and post-condition here
+hooks class will always be in steps package
+@before tag for pre condition
+@after tag for post condition
+
+background - in background, we write all the steps in feature file
+which is common in all the scenarios.
+once the flow is broken, we cannot write steps after that in background
+doesn't matter how many steps are common after flow is broken, we cannot write
+them in background because flow has already broke
+
+background is limited to one feature file
+it means for every feature file background will be different
+
+hooks vs background
+hooks are applicable for all feature files
+background is applicable for one feature file
+ flow of execution -
+ hooks will execute first
+ then background will execute
+ then scenario will execute
+
+data driven testing
+DDT -
+when your one scenario is executing against multiple sets of data
+our framework is hybrid - it supports BDD and DDT
