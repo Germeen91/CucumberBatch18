@@ -36,6 +36,10 @@ public class AddEmployeePage extends CommonMethods {
     @FindBy(id="chkLogin")
     public WebElement checkBox;
 
+
+    @FindBy(id="employeeId")
+    public WebElement empIdLoc;
+
     public AddEmployeePage(){
         PageFactory.initElements(driver, this);
     }

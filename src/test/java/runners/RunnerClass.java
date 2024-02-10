@@ -22,8 +22,17 @@ import org.junit.runner.RunWith;
         dryRun = false,
         //tags = "@sprint1 and @sprint4"           allow as execute based on specific sprint && type of test
         //  tags = "@sprint1 or @sprint5 or @sprint2 or @sprint6"
-        tags = "@regression",
-        plugin ={"pretty"}
+        tags = "@carlos",
+        //html >> format/type of report .. target >> i want to generate my report from target folder ... cucumber.html>> name
+        plugin = {"pretty","html:target/cucumber.html","json:target/cucumber.json","rerun:target/failed.txt"}
+        // target file >> cucumber.html>>click right >> open with Browser ... to generate your report from target file
+        //json: to attach the screen shoot in your report
+
+        //rerun :plugin generates the txt file of all failed test cases[if i open this file will give me where this error] (so, we have to create FailedRunnerClass)
+        //because if we execute 100 scenario and 1 scenario failed will give me failed
+        // so i will give second chance scenario failed
+        //failed.txt [file hold all failed test cases]
+        // if here in runnerClass give me error go to failedRunnerClass and run it then fix the error
 )
 public class RunnerClass {
 }

@@ -1,8 +1,7 @@
 package utils;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,7 +10,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
 public class CommonMethods extends PageInitializer{
     //we define WebDriver global here to reuse
@@ -89,6 +92,34 @@ public class CommonMethods extends PageInitializer{
 
     public void jsClick(WebElement element) {
         getJSExecutor().executeScript("arguments[0].click();", element);
+    }
+
+
+
+    public byte[] takeScreenshot(String fileName){  // give specific file name in screen shot package to not make my random name come for screen shot file
+        //it accepts array of byte in cucumber for the screenshot
+        TakesScreenshot ts = (TakesScreenshot) driver; // from selenium
+        byte[] picByte = ts.getScreenshotAs(OutputType.BYTES); // the image what we are create in screenshot as a byte ,so array of byte to make cucumber understand this image
+        File sourceFile = ts.getScreenshotAs(OutputType.FILE);
+
+        try {
+            FileUtils.copyFile(sourceFile,
+                    new File(Constants.SCREENSHOT_FILEPATH +         // location
+                            fileName+" "+
+                            getTimeStamp("yyyy-MM-dd-HH-mm-ss")+".png"));  // if i execute same test case multiple times will override file image
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return picByte;
+    }
+
+    public String getTimeStamp(String pattern){
+        //this method will return the timestamp which we will add in ss method
+        Date date = new Date();  // modulo from Java .. this date responsible foe date
+        //12-01-1992-21-32-34
+        //yyyy-mm-dd-hh-mm-ss
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern); // this sdf .. responsible format the date  as pattern im going to give you
+        return sdf.format(date); // format date as pattern
     }
 
 }

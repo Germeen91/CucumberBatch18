@@ -2,6 +2,7 @@ package steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import utils.CommonMethods;
 
 public class Hooks extends CommonMethods { // extends
@@ -17,7 +18,22 @@ public class Hooks extends CommonMethods { // extends
 @After
 //this method will always execute after every scenario
 //because it has after tag which is post condition
-    public void end(){
+    public void end(Scenario scenario){ //scenario from io cucumber
+
+    byte[] pic;
+    //before closing the browser, i need to get the screenshot for the test
+    //scenario class in cucumber, this class contains all the information about
+    // the scenario you are executing
+    if(scenario.isFailed()) {
+        pic = takeScreenshot("failed/"+scenario.getName());  // after execute scenario will create file to pass or failed screen shot
+    }else{
+        pic = takeScreenshot("passed/"+scenario.getName());
+    }
+
+    // it will attach the screenshot in the report
+
+    scenario.attach(pic,"image/png", scenario.getName());
+
         closeBrowser();
     }
 }

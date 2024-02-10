@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.CommonMethods;
+import utils.ConfigReader;
 
 public class LoginPage extends CommonMethods {
 // page object model design pattern  OR  class object repository. (encapsulation concept)
@@ -19,6 +20,20 @@ public class LoginPage extends CommonMethods {
 
     @FindBy(id="spanMessage")
     public WebElement errorMessageLoc;
+
+    public void enterUsername(){
+        sendText(ConfigReader.read("username"),login.usernameField);
+    }
+
+    public void enterPassword(){
+        sendText(ConfigReader.read("password"),login.passwordField);
+    }
+
+    public void clickLoginButton(){
+click(login.loginButton);
+    }
+
+
 
     public LoginPage(){    // constructor
         //page factory we use to initialize all the web elements and driver we pass as

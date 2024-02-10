@@ -138,3 +138,137 @@ data driven testing
 DDT -
 when your one scenario is executing against multiple sets of data
 our framework is hybrid - it supports BDD and DDT
+
+
+
+
+Class 5 -
+recap -
+
+we can pass data from feature file in terms of parameters
+"data value", it will be considered as a parameter
+
+we can achieve data driven testing using feature file
+we use examples table with scenario outline to pass multiple sets of data
+
+hooks - based on number of data set
+background - based on number of data set
+scenario - based on number of data set
+
+Assertions -
+in cucumber we use, junit assertions.
+
+true - checks the existence of the element/text/field
+equals - checks the exact value of the element
+
+verification - when you check the details on SRS
+validation - when you write code and check in the application
+
+
+POM - page object model design pattern.
+
+as per this design pattern, we have a class for each page available in website
+we will keep locators for this page in the respective class
+login page locators will be in loginpage class and so on
+we call these locators as object repositories
+
+first, create page class and add object repository
+then create the constructor and call page factory
+then create the object of the class in page initializer class
+then comment out previous web element and call objects  with web elements
+
+
+Class 6 -
+
+recap -
+worked with excel reader class - to add multiple employees from excel file
+
+data table - to achieve data driven testing, we need data table
+
+
+
+
+validate the logic based on the paper. This is what we call verification and validation.
+ Simply, when you have a code, it means application.
+  And when you are disting the logic which is written onto the paper, this is what we call validation.
+They wanted to return their minimums. Okay. I hope your confusion is clear now
+one is with application, one is without application.
+When you have just a paper verification when you have the application versus paper validation.
+
+
+
+class 7 -
+recap -
+
+data table - for data driven testing, we tested it for one step and not for whole scenario
+
+how we validated the employee from web table
+
+target folder - every report what you generate will be available inside target folder
+reports can be in html, json etc.
+
+cucumber maven reporting plugin
+in pom.xml file, we have added it
+
+we are executing maven test command to execute the scripts
+
+Since there can be multiple reasons of the script failure,
+we should re-run the failed script,
+we have to add another plugin to rerun the failed test case
+
+different phases of maven lifecycle
+compile - source code converts into binary code
+install - jars will be installed in local repo(jar .. java archive file >>what i need to add into the project like when i need to use selenium i have to add selenium library so library having jars files )
+deploy - in this phase. jars will go to remote repo
+package - code will be packaged into jars and tranfer
+verify - checks the validity of the code
+test - here code will be tested
+clean - target folder will be deleted
+
+
+we use Maven as a build management
+the reason of using Format pom.Xml file  ? The reason is to make the entire project as a singular build
+
+Execute my code from pom.xml   file .. here we deal in the build, not in the classes.
+ <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <includes>
+                        <include>**/*RunnerClass.java</include>   //if you have more runner class
+                        <include>**/*Smoke.java</include>
+                        <include>**/*Regression.java</include>   // as runner classes in my project
+                    </includes>
+                </configuration>
+            </plugin>
+
+
+            For attaching screenshot to my report
+
+            <plugin>
+                            <groupId>net.masterthought</groupId>
+                            <artifactId>maven-cucumber-reporting</artifactId>
+                            <version>5.7.8</version>
+                            <executions>
+                                <execution>
+                                    <id>execution</id>
+                                    <phase>test</phase>      // i want test my code
+                                    <goals>
+                                        <goal>generate</goal>         // yes i want generate my report
+                                    </goals>
+                                    <configuration>
+                                        <projectName>CucumberBatch18</projectName>          // name of my project
+                                        <outputDirectory>${project.build.directory}</outputDirectory>
+                                        <inputDirectory>${project.build.directory}</inputDirectory>
+                                        <jsonFiles>
+
+                                            <param>**/*.json</param>
+                                        </jsonFiles>
+
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+
+// in maven >> press test >> under target >> cucumber-html-reports >> overview-features.html ..click right open in browser
