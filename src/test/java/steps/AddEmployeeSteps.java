@@ -108,8 +108,7 @@ public class AddEmployeeSteps extends CommonMethods {
             //to get the employee id, we need attribute of the element
             String employeeId = addEmployeePage.empIdLoc.getAttribute("value");
             click(addEmployeePage.saveButton);
-            Thread.sleep(2000);
-            click(dashboardPage.empListOption);
+             click(dashboardPage.empListOption);
             Thread.sleep(2000);
             //we need to search by id on this page
             sendText(employeeId, employeeSearchPage.empIdLoc);

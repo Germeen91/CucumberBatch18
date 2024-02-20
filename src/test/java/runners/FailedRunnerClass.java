@@ -25,7 +25,7 @@ import org.junit.runner.RunWith;
 // this is for only local execution
 
 
-
+//Runner class run all failed and passed But failed runner class only failed
 
 public class FailedRunnerClass {
 }

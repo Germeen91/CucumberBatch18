@@ -5,6 +5,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.CommonMethods;
 
+
+
+
+//objective repository
+//POM( page object model) ... design pattern
+//page factory with @findBy annotation
 public class AddEmployeePage extends CommonMethods {
 
     @FindBy(id="firstName")

@@ -42,7 +42,8 @@ public class CommonMethods extends PageInitializer{
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.get(ConfigReader.read("url"));
         //this method will call all the objects
-        initializePageObjects();
+        initializePageObjects();    /*so that as soon as we open browser all the objects of classes were created
+automatically*/
     }
 
     public void closeBrowser() {
@@ -99,7 +100,7 @@ public class CommonMethods extends PageInitializer{
     public byte[] takeScreenshot(String fileName){  // give specific file name in screen shot package to not make my random name come for screen shot file
         //it accepts array of byte in cucumber for the screenshot
         TakesScreenshot ts = (TakesScreenshot) driver; // from selenium
-        byte[] picByte = ts.getScreenshotAs(OutputType.BYTES); // the image what we are create in screenshot as a byte ,so array of byte to make cucumber understand this image
+        byte[] picByte = ts.getScreenshotAs(OutputType.BYTES); // the image what we are create in screenshot as a byte ,so array of byte to make cucumber understand this image and impact in the report
         File sourceFile = ts.getScreenshotAs(OutputType.FILE);
 
         try {

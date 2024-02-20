@@ -6,6 +6,11 @@ import org.openqa.selenium.support.PageFactory;
 import utils.CommonMethods;
 import utils.ConfigReader;
 
+
+//objective repository
+//POM( page object model) ... design pattern
+//page factory with @findBy annotation
+
 public class LoginPage extends CommonMethods {
 // page object model design pattern  OR  class object repository. (encapsulation concept)
     // Here we have all Locators related login
@@ -18,9 +23,14 @@ public class LoginPage extends CommonMethods {
     @FindBy(xpath="//*[@id='btnLogin']")
     public WebElement loginButton;
 
+    //  @FindBy(xpath="//*[@id='btnLogin']")
+    //    public List<WebElement> loginButton;
+
     @FindBy(id="spanMessage")
     public WebElement errorMessageLoc;
 
+
+    //Extra Ways
     public void enterUsername(){
         sendText(ConfigReader.read("username"),login.usernameField);
     }

@@ -9,5 +9,7 @@ public class Constants {
 
     public static final String SCREENSHOT_FILEPATH = System.getProperty("user.dir")+"/screenshots/"; //because here will decide name file from common method failed or pass
 
-
+    public static void main(String[] args) {
+        System.out.println(System.getProperty("user.dir"));
+    }
 }

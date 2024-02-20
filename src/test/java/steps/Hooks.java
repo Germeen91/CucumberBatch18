@@ -18,7 +18,7 @@ public class Hooks extends CommonMethods { // extends
 @After
 //this method will always execute after every scenario
 //because it has after tag which is post condition
-    public void end(Scenario scenario){ //scenario from io cucumber
+    public void end(Scenario scenario){ //scenario from io cucumber / not junit
 
     byte[] pic;
     //before closing the browser, i need to get the screenshot for the test
