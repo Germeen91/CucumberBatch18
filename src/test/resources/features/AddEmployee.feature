@@ -8,6 +8,8 @@ Feature: Add Employees in HRMS
     When user clicks on PIM option
     And user clicks on Add Employee option
 
+
+
   @add @regression
   Scenario: Adding employee
     When user enters firstName and middleName and lastName

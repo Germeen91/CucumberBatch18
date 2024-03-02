@@ -19,10 +19,10 @@ import org.junit.runner.RunWith;
         //it will (scan) all the steps definitions and provide if there is any step def missing
         //false >> to execute the code .. back it by default       //true scan
                                                                   //false excute
-        dryRun = false,
+        dryRun =false,
         //tags = "@sprint1 and @sprint4"           allow as execute based on specific sprint && type of test
         //  tags = "@sprint1 or @sprint5 or @sprint2 or @sprint6"
-        tags = "@carlos",
+        tags = "@add",
         //html >> format/type of report .. target >> i want to generate my report from target folder ... cucumber.html>> name
         plugin = {"pretty","html:target/cucumber.html","json:target/cucumber.json","rerun:target/failed.txt"}
         // target file >> cucumber.html>>click right >> open with Browser ... to generate your report from target file

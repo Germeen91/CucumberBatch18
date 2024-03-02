@@ -101,12 +101,12 @@ automatically*/
         //it accepts array of byte in cucumber for the screenshot
         TakesScreenshot ts = (TakesScreenshot) driver; // from selenium
         byte[] picByte = ts.getScreenshotAs(OutputType.BYTES); // the image what we are create in screenshot as a byte ,so array of byte to make cucumber understand this image and impact in the report
-        File sourceFile = ts.getScreenshotAs(OutputType.FILE);
+        File sourceFile = ts.getScreenshotAs(OutputType.FILE); //save as a file on computer
 
         try {
-            FileUtils.copyFile(sourceFile,
+            FileUtils.copyFile(sourceFile, // file
                     new File(Constants.SCREENSHOT_FILEPATH +         // location
-                            fileName+" "+
+                            fileName+" "+ //file name
                             getTimeStamp("yyyy-MM-dd-HH-mm-ss")+".png"));  // if i execute same test case multiple times will override file image
         } catch (IOException e) {
             e.printStackTrace();
@@ -116,7 +116,7 @@ automatically*/
 
     public String getTimeStamp(String pattern){
         //this method will return the timestamp which we will add in ss method
-        Date date = new Date();  // modulo from Java .. this date responsible foe date
+        Date date = new Date();  // modulo from Java .. this date responsible for date
         //12-01-1992-21-32-34
         //yyyy-mm-dd-hh-mm-ss
         SimpleDateFormat sdf = new SimpleDateFormat(pattern); // this sdf .. responsible format the date  as pattern im going to give you

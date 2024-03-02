@@ -2,11 +2,13 @@ package steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
 
 import java.time.Duration;
+import java.util.List;
 
 public class EmployeeSearchSteps extends CommonMethods {
     //public WebDriver driver;
@@ -54,6 +56,10 @@ public class EmployeeSearchSteps extends CommonMethods {
         //    driver.findElement(By.id("empsearch_employee_name_empName")).sendKeys("abel");
         //WebElement empNameLoc = driver.findElement(By.id("empsearch_employee_name_empName"));
         sendText("abel", employeeSearchPage.empNameLoc);
+
     }
+
+
+
 
 }
