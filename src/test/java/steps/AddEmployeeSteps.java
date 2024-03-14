@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
+import utils.DbUtils;
 import utils.ExcelReader;
 
 import java.io.IOException;
@@ -13,6 +14,13 @@ import java.util.List;
 import java.util.Map;
 
 public class AddEmployeeSteps extends CommonMethods {
+// we create instance Variable and assign it to the local
+    //to can use the same steps
+    String firstNameFE;
+    String middleNameFE;
+    String lastNameFE;
+    String employeeId;
+
 
 
     @When("user clicks on Add Employee option")
@@ -50,6 +58,12 @@ public class AddEmployeeSteps extends CommonMethods {
        // WebElement middleNameLoc = driver.findElement(By.xpath("//*[@id='middleName']"));
        // WebElement lastNameLoc = driver.findElement(By.xpath("//*[@id='lastName']"));
 
+    // Coping the information from local variables into instance variables so that we can access it in other methods
+        firstNameFE=firstName;
+        middleNameFE=middleName;
+        lastNameFE=lastName;
+        //fetching the employee id from frontend so that we can write our query using it.
+        employeeId=addEmployeePage.empIdLoc.getAttribute("value");
         sendText(firstName, addEmployeePage.firstNameLoc);
         sendText(middleName, addEmployeePage.middleNameLoc);
         sendText(lastName, addEmployeePage.lastNameLoc);
@@ -59,7 +73,7 @@ public class AddEmployeeSteps extends CommonMethods {
        // WebElement firstNameLoc = driver.findElement(By.xpath("//*[@id='firstName']"));
       //  WebElement middleNameLoc = driver.findElement(By.xpath("//*[@id='middleName']"));
       //  WebElement lastNameLoc = driver.findElement(By.xpath("//*[@id='lastName']"));
-
+  // Coping the information from local variable into instance
         sendText(firstname, addEmployeePage.firstNameLoc);
         sendText(middleName, addEmployeePage.middleNameLoc);
         sendText(lastName, addEmployeePage.lastNameLoc);
@@ -130,5 +144,27 @@ public class AddEmployeeSteps extends CommonMethods {
         }
 
     }
+
+
+    @When("fetch the information from backend")
+    public void fetch_the_information_from_backend() {
+String query="select emp_firstname,emp_middle_name,emp_lastname from hs_hr_employees where employee_id="+employeeId;
+       List<Map<String,String >>  data=DbUtils.fetch(query);
+
+        Map<String,String> rowData= data.get(0);
+
+
+        String firstNameDB=rowData.get("emp_firstname");
+        String middleNameDB=rowData.get("emp_middle_name");
+        String lastNameDB=rowData.get("emp_lastname");
+
+        Assert.assertEquals(firstNameFE,firstNameDB);
+        Assert.assertEquals(middleNameFE,middleNameDB);
+        Assert.assertEquals(lastNameFE,lastNameDB);
+        System.out.println(data);
+        System.out.println(rowData);
+
+    }
+
 
 }

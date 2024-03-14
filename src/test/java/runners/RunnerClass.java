@@ -22,7 +22,7 @@ import org.junit.runner.RunWith;
         dryRun =false,
         //tags = "@sprint1 and @sprint4"           allow as execute based on specific sprint && type of test
         //  tags = "@sprint1 or @sprint5 or @sprint2 or @sprint6"
-        tags = "@add",
+        tags = "@dbTest",
         //html >> format/type of report .. target >> i want to generate my report from target folder ... cucumber.html>> name
         plugin = {"pretty","html:target/cucumber.html","json:target/cucumber.json","rerun:target/failed.txt"}
         // target file >> cucumber.html>>click right >> open with Browser ... to generate your report from target file
