@@ -6,7 +6,7 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 //we need RunWith options to run cucumber with junit
-//junit dependency.... to execute the test
+//junit dependency.... to execute the test  (junit is the parent for [testNG,cucumber])
 @RunWith(Cucumber.class)
 //cucumber options decide what to execute, where to execute
 @CucumberOptions(
