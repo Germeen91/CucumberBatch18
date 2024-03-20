@@ -27,7 +27,7 @@ public class APIWorkFlowSteps {
     @Given("a JWT bearer token is created")
     public void a_jwt_bearer_token_is_created() {
       //prepare the request
-        RequestSpecification request= given().
+        request = given().
                 header(APIConstants.HEADER_CONTENT_TYPE_KEY,
                         APIConstants.HEADER_CONTENT_TYPE_VALUE).
 
@@ -37,9 +37,9 @@ public class APIWorkFlowSteps {
                         "}");
 
         // hit the endpoint/send the request
-        Response response=request.when().post(APIConstants.GENERATE_TOKEN);
+         response = request.when().post(APIConstants.GENERATE_TOKEN);
         //save the token in token variable
-        token="Bearer "+ response.jsonPath().getString("token");
+        token="Bearer "+ response.jsonPath().getString("token");  //"token" from response body in postman
         System.out.println(token);
     }
     @Given("a request is prepared to create an employee using api call")
@@ -108,20 +108,21 @@ public class APIWorkFlowSteps {
     @Then("the data coming from {string} object should match with the data used in post")
     public void the_data_coming_from_object_should_match_with_the_data_used_in_post
             (String empObject, io.cucumber.datatable.DataTable dataTable) {
-//data coming from feature file will be stored here
+//expected data coming from feature file will be stored here
         List<Map<String,String>> expectedData = dataTable.asMaps();
-        //data will be taken up from the response from employee object
-        Map<String,String> actualData = response.jsonPath().get(empObject);  // getString to get one string
+
+        //actual data coming from the response from employee object
+        Map<String,String> actualData = response.jsonPath().get(empObject);  // getString to get only one string but here we need more than one
 
         //this is the time to compare the values
-        for (Map<String,String> map:expectedData
-        ) {
-            //to get all the keys which are unique
-            Set<String> keys   = map.keySet(); // getKey to get one key only
-            for (String key:keys
-            ) {
+        for (Map<String,String> map:expectedData) {
+            //to get all the keys which are unique not duplicate
+            //so, assigned them in Set not List
+            Set<String> keys   = map.keySet(); // getKey to get one key only [Set all Key as unique]
+            for (String key:keys) { // use for loop to get value from every key
                 //this values one by one coming from feature file
-                String expectedValue = map.get(key);
+                String expectedValue = map.get(key);                       // [and from set of keys retrieve value]
+
                 //this value one by one coming from response i.e employee object
                 String actualValue = actualData.get(key);
                 Assert.assertEquals(actualValue, expectedValue);

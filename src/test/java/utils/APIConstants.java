@@ -12,7 +12,7 @@ public static final String baseURI = RestAssured.baseURI
 public static final String CREATE_EMPLOYEE = baseURI + "/createEmployee.php";
     public static final String GENERATE_TOKEN = baseURI + "/generateToken.php";
     public static final String GET_ONE_EMPLOYEE = baseURI + "/getOneEmployee.php";
-    public static final String UPDATE_EMPLOYEE=baseURI +"/updateEmployee.php";
+    public static final String UPDATE_EMPLOYEE = baseURI +"/updateEmployee.php";
 
     public static final String GET_ALL_EMPLOYEE = baseURI +"/getAllEmployees.php";
     public static final String GET_JOB_TITLE = baseURI +"/jobTitle.php";

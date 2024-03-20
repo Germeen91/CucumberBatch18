@@ -55,7 +55,7 @@ public class HardCodedExample {
         response.prettyPrint();
 
 
-//hamcrest matchers  [equal import from core hamcrest ]
+//hamcrest matchers  [equal import from core hamcrest ] ..this is the class which contains method to perform assertions
        response.then().assertThat().body("Message",equalTo("Employee Created"));
 response.then().assertThat().body("Employee.emp_firstname",equalTo("Marco"));
         response.then().assertThat().body("Employee.emp_lastname",equalTo("Philip"));
