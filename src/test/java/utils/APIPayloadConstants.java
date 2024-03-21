@@ -45,4 +45,19 @@ return obj.toString();
         return obj.toString();
     }
 
+
+    public static String updateEmployeeJsonPayload(){
+    JSONObject  obj= new JSONObject();
+        obj.put("employee_id", "104149A");
+        obj.put("emp_firstname","Gogaa");
+        obj.put("emp_lastname","Alfred");
+        obj.put("emp_middle_name","ME");
+        obj.put("emp_gender","F");
+        obj.put("emp_birthday","2000-10-10");
+        obj.put("emp_status","Permenant");
+        obj.put("emp_job_title","QA Engineer");
+
+        return obj.toString();
+    }
+
 }

@@ -37,3 +37,13 @@ Background:
       Then the status for this request should be 201
       And  the employee created contains key "Message" and value "Employee Created"
       And the employee id "Employee.employee_id" is stored as global variable
+
+      @update
+      Scenario: update employee by using dynamic json payload
+        Given a request is prepared to update an employee using json payload
+        When a PUT call is made to update the employee
+        Then the status for the request should be 200
+        And  the employee updated contains key "Message" and value "Employee record Updated"
+        And the data come from "Employee" object should match with the data used in post
+          |emp_firstname|   emp_middle_name|emp_lastname|emp_birthday|emp_gender  |emp_job_title|emp_status|
+        |    Gogaa      |           ME     |Alfred      | 2000-10-10  |Female     |   QA Engineer |   Permenant|

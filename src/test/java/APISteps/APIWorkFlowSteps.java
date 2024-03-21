@@ -150,8 +150,7 @@ public class APIWorkFlowSteps {
         public void a_request_is_prepared_using_data
         (String firstName, String lastName,
          String middleName, String gender,
-         String birthday, String status,
-         String jobTitle) {
+         String birthday, String status, String jobTitle) {
             request = given().
                     header(APIConstants.HEADER_CONTENT_TYPE_KEY,APIConstants.HEADER_CONTENT_TYPE_VALUE).
                     header(APIConstants.HEADER_AUTHORIZATION_KEY,token).
@@ -159,7 +158,61 @@ public class APIWorkFlowSteps {
                             (firstName,lastName,middleName,gender,birthday,status,jobTitle));
         }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@Given("a request is prepared to update an employee using json payload")
+public void a_request_is_prepared_to_update_an_employee_using_json_payload() {
+    request=given().header(APIConstants.HEADER_CONTENT_TYPE_KEY,
+                    APIConstants.HEADER_CONTENT_TYPE_VALUE).
+            header(APIConstants.HEADER_AUTHORIZATION_KEY,token).
+            body(APIPayloadConstants.updateEmployeeJsonPayload()).queryParam("employee_id",employee_id);
+    }
 
+    @When("a PUT call is made to update the employee")
+    public void a_put_call_is_made_to_update_the_employee() {
+        response = request.when().put(APIConstants.UPDATE_EMPLOYEE);
+    }
+    @Then("the status for the request should be {int}")
+    public void the_status_for_the_request_should_be(Integer status) {
+        response.then().assertThat().statusCode(status);
+    }
+    @Then("the employee updated contains key {string} and value {string}")
+    public void the_employee_updated_contains_key_and_value(String message, String updated) {
+      response.then().assertThat().body(message,equalTo(updated));
+    }
+    @Then("the data come from {string} object should match with the data used in post")
+    public void the_data_come_from_object_should_match_with_the_data_used_in_post
+            (String object, io.cucumber.datatable.DataTable dataTable) {
+      List<Map<String,String>> expected=dataTable.asMaps();
+
+Map<String,String> actual= response.jsonPath().get(object);
+
+for (Map<String,String> expectedmap:expected){
+
+    Set<String> keys =expectedmap.keySet();
+    for (String key:keys){
+
+        String expectedValue=expectedmap.get(key);
+        String actualVale=actual.get(key);
+        Assert.assertEquals(expectedValue,actualVale);
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 
 
 
